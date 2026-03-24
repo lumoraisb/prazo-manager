@@ -1,0 +1,49 @@
+.summary-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  min-height: 140px;
+
+  transition: all 0.2s ease;
+}
+
+.summary-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.summary-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-card-top h3 {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 600;
+  margin: 0;
+}
+
+.summary-card-icon {
+  font-size: 20px;
+}
+
+.summary-card-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.summary-card-description {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 0;
+}

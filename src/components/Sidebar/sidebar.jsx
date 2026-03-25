@@ -1,3 +1,4 @@
+import {NavLink} from 'react-router-dom'
 import "./sidebar.css"
 
 function Sidebar() {
@@ -10,15 +11,15 @@ function Sidebar() {
         </div>
 
         <nav className="sidebar-menu">
-          <div className="sidebar-option active">
+          <NavLink to="/" className="sidebar-option">
             <span className="sidebar-option-icon">📊</span>
-            <p>Painel</p>
-          </div>
+            <p>Dashboard</p>
+          </NavLink>
 
-          <div className="sidebar-option">
-            <span className="sidebar-option-icon">📄</span>
+          <NavLink to="/registros" className="sidebar-option">
+            <span className="sidebar-option-icon">📁</span>
             <p>Registros</p>
-          </div>
+          </NavLink>
 
           <div className="sidebar-option">
             <span className="sidebar-option-icon">👥</span>

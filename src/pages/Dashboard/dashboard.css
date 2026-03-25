@@ -46,12 +46,12 @@
 }
 
 .filtro-btn.ativo {
-  background-color: #111827;
+  background-color: #2563EB;
   color: #ffffff;
 }
 
 .priority-cards-dashboard {
-  background-color: #ededed;
+  border: 1px rgb(231, 231, 231) solid;
   padding: 24px;
   margin-top: 0;
   border-radius: 16px;

@@ -1,0 +1,137 @@
+.novo-contrato-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.novo-contrato-modal {
+  background-color: #FFFFFF;
+  width: 700px;
+  max-width: 90%;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.header-novo-contrato {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-novo-contrato h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.fechar-modal {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #64748B;
+}
+
+.form-novo-contrato {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.linha-form {
+  display: flex;
+  gap: 16px;
+}
+
+.campo-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.campo-form label {
+  font-size: 13px;
+  color: #0F172A;
+  margin-bottom: 6px;
+}
+
+.campo-form label span {
+  color: #DC2626;
+}
+
+.campo-form input {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #E2E8F0;
+  background-color: #F1F5F9;
+  font-size: 14px;
+  color: #0F172A;
+  outline: none;
+  transition: 0.2s;
+}
+
+.campo-form input:focus {
+  border-color: #2563EB;
+  background-color: #FFFFFF;
+}
+
+.campo-form input:disabled {
+  background-color: #E2E8F0;
+  cursor: not-allowed;
+}
+
+.descricao-campo {
+  font-size: 12px;
+  color: #64748B;
+  margin-top: 4px;
+}
+
+.acoes-form {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.btn-cancelar {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid #E2E8F0;
+  background-color: #FFFFFF;
+  color: #0F172A;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-cancelar:hover {
+  background-color: #F1F5F9;
+}
+
+.btn-criar {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  background-color: #2563EB;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-criar:hover {
+  background-color: #1D4ED8;
+}
+
+@media (max-width: 600px) {
+  .linha-form {
+    flex-direction: column;
+  }
+}

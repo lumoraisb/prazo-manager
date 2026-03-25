@@ -1,9 +1,9 @@
-import { useState } from "react"
 import PriorityCard from "../../components/PriorityCard/prioritycard"
 import SummaryCard from "../../components/SummaryCard/summarycard"
 import "./dashboard.css"
+import { useState } from "react"
 
-function Dashboard() {
+function Dashboard({ contratos }) {
   function verificarStatus(diasVenc) {
     if (diasVenc < 0) {
       return "vencido"
@@ -24,59 +24,7 @@ function Dashboard() {
     return dias
   }
 
-  const priorityData = [
-    {
-      numero: "2026/1",
-      nome: "Huawei",
-      equipamento: "Switch",
-      dataVenc: "2026-03-20",
-      comercial: "Angelo",
-    },
-    {
-      numero: "2026/2",
-      nome: "Google",
-      equipamento: "Servidor",
-      dataVenc: "2026-03-28",
-      comercial: "Maria",
-    },
-    {
-      numero: "2026/3",
-      nome: "Amazon",
-      equipamento: "Roteador",
-      dataVenc: "2026-04-10",
-      comercial: "João",
-    },
-    {
-      numero: "2026/4",
-      nome: "Netflix",
-      equipamento: "Firewall",
-      dataVenc: "2026-04-25",
-      comercial: "Ana",
-    },
-    {
-      numero: "2026/5",
-      nome: "Microsoft",
-      equipamento: "Switch",
-      dataVenc: "2026-05-20",
-      comercial: "Carlos",
-    },
-    {
-      numero: "2026/6",
-      nome: "Meta",
-      equipamento: "Servidor",
-      dataVenc: "2026-06-10",
-      comercial: "Beatriz",
-    },
-    {
-      numero: "2026/7",
-      nome: "Meta",
-      equipamento: "Teste",
-      dataVenc: "2026-03-24",
-      comercial: "Beatriz",
-    }
-  ]
-
-  const priorityDataComStatus = priorityData.map((item) => {
+  const priorityDataComStatus = contratos.map((item) => {
     const diasVenc = calcularDias(item.dataVenc)
     const status = verificarStatus(diasVenc)
 
@@ -112,21 +60,21 @@ function Dashboard() {
       : priorityDataOrdenado.filter((item) => item.status === filtro)
 
   const totalVencidos = priorityDataComStatus.filter(
-    (item) => item.status.toLowerCase() === "vencido"
+    (item) => item.status === "vencido"
   ).length
 
   const totalVencendo = priorityDataComStatus.filter(
-    (item) => item.status.toLowerCase() === "vencendo"
+    (item) => item.status === "vencendo"
   ).length
 
   const totalAtivo = priorityDataComStatus.filter(
-    (item) => item.status.toLowerCase() === "ativo"
+    (item) => item.status === "ativo"
   ).length
 
   const summaryData = [
     {
       title: "Total de Registros",
-      value: priorityData.length,
+      value: contratos.length,
       description: "Contratos ativos no sistema"
     },
     {
@@ -154,16 +102,14 @@ function Dashboard() {
       </div>
 
       <div className="up-cards-dashboard">
-        {summaryData.map((card) => {
-          return (
-            <SummaryCard
-              key={card.title}
-              title={card.title}
-              value={card.value}
-              description={card.description}
-            />
-          )
-        })}
+        {summaryData.map((card) => (
+          <SummaryCard
+            key={card.title}
+            title={card.title}
+            value={card.value}
+            description={card.description}
+          />
+        ))}
       </div>
 
       <div className="filtros-dashboard">
@@ -197,20 +143,18 @@ function Dashboard() {
       </div>
 
       <div className="priority-cards-dashboard">
-        {priorityDataFiltrado.map((card) => {
-          return (
-            <PriorityCard
-              key={card.numero}
-              numero={card.numero}
-              status={card.status}
-              nome={card.nome}
-              equipamento={card.equipamento}
-              dataVenc={card.dataVenc}
-              comercial={card.comercial}
-              diasVenc={card.diasVenc}
-            />
-          )
-        })}
+        {priorityDataFiltrado.map((card) => (
+          <PriorityCard
+            key={card.numero}
+            numero={card.numero}
+            status={card.status}
+            nome={card.nome}
+            equipamento={card.equipamento}
+            dataVenc={card.dataVenc}
+            comercial={card.comercial}
+            diasVenc={card.diasVenc}
+          />
+        ))}
       </div>
     </>
   )

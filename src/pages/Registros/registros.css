@@ -1,0 +1,194 @@
+.registros {
+    background-color: #F5F5F5;
+}
+
+.titulo-pagina-registros.titulo-pagina {
+  margin-bottom: 24px;
+}
+
+.titulo-pagina-registros h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.titulo-pagina-registros p {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.up-part-registros {
+    display: flex;
+    justify-content: space-between;
+}
+
+.up-part-button button {
+    background-color: #2563EB;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    display: flex;
+    gap: 10px;
+    font-size: 2.3vh;
+    border-radius: 16px;
+}
+
+.form-filter-registros {
+  margin: 45px 0px 25px 0px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.form-filter-registros form {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.input-busca {
+  flex: 1;
+  min-width: 260px;
+
+  padding: 14px 16px;
+  border-radius: 12px;
+
+  border: 1px solid #E2E8F0;
+  background-color: #F1F5F9;
+
+  font-size: 14px;
+  color: #0F172A;
+
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.input-busca::placeholder {
+  color: #64748B;
+}
+
+.input-busca:focus {
+  border-color: #2563EB;
+  background-color: #FFFFFF;
+}
+
+.select-filtro {
+  min-width: 220px;
+
+  padding: 14px 16px;
+  border-radius: 12px;
+
+  border: 1px solid #E2E8F0;
+  background-color: #F1F5F9;
+
+  font-size: 14px;
+  color: #0F172A;
+
+  cursor: pointer;
+  outline: none;
+
+  transition: 0.2s ease;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.select-filtro:hover {
+  background-color: #E2E8F0;
+}
+
+.select-filtro:focus {
+  border-color: #2563EB;
+  background-color: #FFFFFF;
+}
+
+.select-filtro {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%2394A3B8' height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M5 7l5 5 5-5H5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 16px;
+}
+
+/* 🧠 CABEÇALHO */
+thead {
+  background-color: #F8FAFC;
+}
+
+thead th {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748B;
+
+  padding: 14px 16px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+/* 📄 LINHAS */
+tbody tr {
+  transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+  background-color: #F1F5F9;
+}
+
+/* 📌 CÉLULAS */
+tbody td {
+  padding: 16px;
+  font-size: 14px;
+  color: #0F172A;
+
+  border-bottom: 1px solid #E2E8F0;
+}
+
+/* remove borda da última linha */
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.acoes {
+  display: flex;
+  gap: 8px;
+}
+
+.acoes button {
+  border: none;
+  background: #F1F5F9;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.acoes button:hover {
+  background: #E2E8F0;
+}
+
+@media (max-width: 768px) {
+  .form-filter-registros form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-busca,
+  .select-filtro {
+    width: 100%;
+  }
+}
+
+.exibe-quantidade-registros {
+    color: #6b7280;;
+}

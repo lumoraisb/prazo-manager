@@ -30,7 +30,7 @@ function Registros({ contratos, setContratos }) {
 
     function excluirContrato(numeroContrato) {
         setContratos((listaAtual) => {
-             return listaAtual.filter((contrato) => contrato.numero !== numeroContrato)
+            return listaAtual.filter((contrato) => contrato.numero !== numeroContrato)
         })
     }
 
@@ -44,7 +44,7 @@ function Registros({ contratos, setContratos }) {
     return (
         <>
             <div className="up-part-registros">
-                <div className="titulo-pagina-registros">
+                <div className="titulo-pagina">
                     <h1>Registros</h1>
                     <p>Gerencie todos os contratos e equipamentos</p>
                 </div>
@@ -102,7 +102,7 @@ function Registros({ contratos, setContratos }) {
                     {contratosComStatus.map((item) => (
                         <tr key={item.numero}>
                             <td>{item.numero}</td>
-                            <td>{item.cliente}</td>
+                            <td>{item.nome}</td>
                             <td>23/03/2026</td>
                             <td>{item.dataVenc}</td>
                             <td>{item.diasVenc}</td>
@@ -133,6 +133,15 @@ function Registros({ contratos, setContratos }) {
                     }}
                     adicionarContrato={(novoContrato) =>
                         setContratos((listaAtual) => [...listaAtual, novoContrato])
+                    }
+                    editarContrato={(contratoAtualizado) =>
+                        setContratos((listaAtual) =>
+                            listaAtual.map((contrato) =>
+                                contrato.numero === contratoAtualizado.numero
+                                    ? contratoAtualizado
+                                    : contrato
+                            )
+                        )
                     }
                     contratoEditando={contratoEditando}
                 />

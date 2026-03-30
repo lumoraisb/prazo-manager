@@ -1,0 +1,71 @@
+.cliente-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+
+  padding: 22px 20px;
+  min-height: 170px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  transition: 0.2s ease;
+}
+
+.cliente-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* TOPO */
+.cliente-card-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cliente-card-topo h3 {
+  margin: 0;
+
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 600;
+
+  color: #0f172a;
+  max-width: 70%;
+}
+
+/* BADGE */
+.badge-contratos {
+  background-color: #f1f5f9;
+  color: #334155;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  white-space: nowrap;
+}
+
+/* INFO */
+.cliente-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.cliente-card-info p {
+  margin: 0;
+
+  font-size: 14px;
+  color: #64748b;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

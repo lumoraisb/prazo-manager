@@ -2,18 +2,18 @@
     background-color: #F5F5F5;
 }
 
-.titulo-pagina-registros.titulo-pagina {
+.titulo-pagina {
   margin-bottom: 24px;
 }
 
-.titulo-pagina-registros h1 {
+.titulo-pagina h1 {
   font-size: 28px;
   font-weight: 700;
   color: #111827;
   margin-bottom: 6px;
 }
 
-.titulo-pagina-registros p {
+.titulo-pagina p {
   font-size: 14px;
   color: #6b7280;
 }
@@ -121,7 +121,6 @@ table {
   margin-top: 16px;
 }
 
-/* 🧠 CABEÇALHO */
 thead {
   background-color: #F8FAFC;
 }
@@ -136,7 +135,6 @@ thead th {
   border-bottom: 1px solid #E2E8F0;
 }
 
-/* 📄 LINHAS */
 tbody tr {
   transition: background 0.2s ease;
 }
@@ -145,7 +143,6 @@ tbody tr:hover {
   background-color: #F1F5F9;
 }
 
-/* 📌 CÉLULAS */
 tbody td {
   padding: 16px;
   font-size: 14px;
@@ -154,7 +151,6 @@ tbody td {
   border-bottom: 1px solid #E2E8F0;
 }
 
-/* remove borda da última linha */
 tbody tr:last-child td {
   border-bottom: none;
 }

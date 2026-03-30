@@ -79,39 +79,3 @@
 .sidebar-option.active .sidebar-option-icon {
   color: #2563eb;
 }
-
-.sidebar-user {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-
-  padding-top: 18px;
-  border-top: 1px solid #e5e7eb;
-}
-
-.sidebar-user-avatar {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background-color: #dbeafe;
-  color: #2563eb;
-  font-weight: 700;
-  font-size: 22px;
-}
-
-.sidebar-user-info h4 {
-  margin: 0;
-  font-size: 16px;
-  color: #0f172a;
-}
-
-.sidebar-user-info p {
-  margin: 4px 0 0 0;
-  font-size: 14px;
-  color: #64748b;
-}

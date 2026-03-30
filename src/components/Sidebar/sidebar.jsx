@@ -21,10 +21,10 @@ function Sidebar() {
             <p>Registros</p>
           </NavLink>
 
-          <div className="sidebar-option">
+          <NavLink to="/clientes" className="sidebar-option">
             <span className="sidebar-option-icon">👥</span>
             <p>Clientes</p>
-          </div>
+          </NavLink>
 
           <div className="sidebar-option">
             <span className="sidebar-option-icon">📈</span>
@@ -36,14 +36,6 @@ function Sidebar() {
             <p>Configurações</p>
           </div>
         </nav>
-      </div>
-
-      <div className="sidebar-user">
-        <div className="sidebar-user-avatar">AD</div>
-        <div className="sidebar-user-info">
-          <h4>Admin User</h4>
-          <p>admin@empresa.com</p>
-        </div>
       </div>
     </aside>
   )

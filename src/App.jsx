@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard/dashboard"
 import Registros from "./pages/Registros/registros"
 import { contratos as contratosIniciais } from "./data/contratos"
 import "./App.css"
+import Clientes from "./pages/Clientes/clientes"
 
 function App() {
 
@@ -28,6 +29,11 @@ function App() {
                   setContratos={setListaContratos}
                 />
               }
+            />
+            <Route
+              path="/clientes"
+              element={
+                <Clientes contratos={listaContratos}/>}
             />
           </Routes>
         </main>

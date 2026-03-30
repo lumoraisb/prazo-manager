@@ -1,15 +1,14 @@
 import "./formRegistros.css"
 import { useState } from "react"
 
-function FormRegistro({ fechar, adicionarContrato }) {
-
-  const [numero, setNumero] = useState("")
-  const [cliente, setCliente] = useState("")
-  const [dataAbertura, setDataAbertura] = useState("")
-  const [dataVencimento, setDataVencimento] = useState("")
-  const [equipamento, setEquipamento] = useState("")
-  const [comercial, setComercial] = useState("")
-  const [revalidacao, setRevalidacao] = useState("")
+function FormRegistro({ fechar, adicionarContrato, editarContrato, contratoEditando }) {
+  const [numero, setNumero] = useState(contratoEditando?.numero || "")
+  const [cliente, setCliente] = useState(contratoEditando?.nome || "")
+  const [dataAbertura, setDataAbertura] = useState(contratoEditando?.dataAbertura || "")
+  const [dataVencimento, setDataVencimento] = useState(contratoEditando?.dataVenc || "")
+  const [equipamento, setEquipamento] = useState(contratoEditando?.equipamento || "")
+  const [comercial, setComercial] = useState(contratoEditando?.comercial || "")
+  const [revalidacao, setRevalidacao] = useState(contratoEditando?.revalidacao || "")
 
   function gerarNumero() {
     return `CTR-${Date.now()}`
@@ -20,7 +19,7 @@ function FormRegistro({ fechar, adicionarContrato }) {
 
     const novoContrato = {
       numero: numero || gerarNumero(),
-      cliente: cliente,
+      nome: cliente,
       dataAbertura,
       dataVenc: dataVencimento,
       equipamento,
@@ -28,21 +27,26 @@ function FormRegistro({ fechar, adicionarContrato }) {
       revalidacao
     }
 
-    adicionarContrato(novoContrato)
+    if (contratoEditando) {
+      editarContrato(novoContrato)
+    } else {
+      adicionarContrato(novoContrato)
+    }
+
     fechar()
   }
 
   return (
     <div className="novo-contrato-overlay">
       <div className="novo-contrato-modal">
-
         <div className="header-novo-contrato">
-          <h1>Novo Contrato</h1>
-          <button className="fechar-modal" onClick={fechar}>✕</button>
+          <h1>{contratoEditando ? "Editar Contrato" : "Novo Contrato"}</h1>
+          <button type="button" className="fechar-modal" onClick={fechar}>
+            ✕
+          </button>
         </div>
 
         <form className="form-novo-contrato" onSubmit={handleSubmit}>
-
           <div className="linha-form">
             <div className="campo-form">
               <label>Número</label>
@@ -51,6 +55,7 @@ function FormRegistro({ fechar, adicionarContrato }) {
                 placeholder="Auto-gerado se deixado em branco"
                 value={numero}
                 onChange={(e) => setNumero(e.target.value)}
+                disabled={!!contratoEditando}
               />
               <p className="descricao-campo">
                 Deixe em branco para gerar automaticamente
@@ -121,7 +126,7 @@ function FormRegistro({ fechar, adicionarContrato }) {
 
           <div className="campo-form">
             <label>Vencimento Geral</label>
-            <input type="date"/>
+            <input type="date" />
           </div>
 
           <div className="acoes-form">
@@ -130,10 +135,9 @@ function FormRegistro({ fechar, adicionarContrato }) {
             </button>
 
             <button type="submit" className="btn-criar">
-              Criar Contrato
+              {contratoEditando ? "Salvar Alterações" : "Criar Contrato"}
             </button>
           </div>
-
         </form>
       </div>
     </div>

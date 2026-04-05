@@ -1,85 +1,52 @@
 .titulo-pagina {
-  margin-bottom: 24px;
+  padding: 1.5rem 0 1rem;
 }
-
 .titulo-pagina h1 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #111827;
-  margin-bottom: 6px;
+  font-size: 1.6rem;
+  font-weight: 600;
 }
-
 .titulo-pagina p {
-  font-size: 14px;
+  font-size: 0.9rem;
   color: #6b7280;
+  margin-top: 4px;
 }
 
 .up-cards-dashboard {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-bottom: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 1.5rem;
 }
 
 .filtros-dashboard {
   display: flex;
-  gap: 12px;
+  gap: 8px;
+  margin-bottom: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 24px;
 }
 
 .filtro-btn {
-  border: none;
-  background-color: #f3f4f6;
-  color: #374151;
-  padding: 10px 16px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: transparent;
+  font-size: 0.85rem;
+  color: #6b7280;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s;
 }
-
 .filtro-btn:hover {
-  background-color: #e5e7eb;
-  transform: translateY(-1px);
+  background: #f3f4f6;
+  color: #1a1a2e;
 }
-
 .filtro-btn.ativo {
-  background-color: #2563EB;
-  color: #ffffff;
+  background: #1a1a2e;
+  color: #fff;
+  border-color: #1a1a2e;
 }
 
 .priority-cards-dashboard {
-  border: 1px rgb(231, 231, 231) solid;
-  padding: 24px;
-  margin-top: 0;
-  border-radius: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-}
-
-@media (max-width: 1024px) {
-  .up-cards-dashboard {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .up-cards-dashboard {
-    grid-template-columns: 1fr;
-  }
-
-  .filtros-dashboard {
-    flex-direction: column;
-  }
-
-  .filtro-btn {
-    width: 100%;
-  }
-
-  .priority-cards-dashboard {
-    padding: 18px;
-  }
+  gap: 8px;
 }

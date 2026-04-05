@@ -1,7 +1,7 @@
 import "./formRegistros.css"
 import { useState } from "react"
 
-function FormRegistro({ fechar, adicionarContrato, editarContrato, contratoEditando }) {
+function FormRegistro({ fechar, adicionarContrato, editarContrato, contratoEditando, config }) {
   const [numero, setNumero] = useState(contratoEditando?.numero || "")
   const [cliente, setCliente] = useState(contratoEditando?.nome || "")
   const [dataAbertura, setDataAbertura] = useState(contratoEditando?.dataAbertura || "")
@@ -11,7 +11,10 @@ function FormRegistro({ fechar, adicionarContrato, editarContrato, contratoEdita
   const [revalidacao, setRevalidacao] = useState(contratoEditando?.revalidacao || "")
 
   function gerarNumero() {
-    return `CTR-${Date.now()}`
+    const ano = new Date().getFullYear()
+    const prefixo = config?.prefixo || `${ano}`
+    const sequencial = Date.now().toString().slice(-4)
+    return `${prefixo}/${sequencial}`
   }
 
   function handleSubmit(e) {

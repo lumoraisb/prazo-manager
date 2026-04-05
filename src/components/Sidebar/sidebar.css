@@ -3,11 +3,9 @@
   height: 100vh;
   background-color: #f8fafc;
   border-right: 1px solid #e5e7eb;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   padding: 24px 20px;
   box-sizing: border-box;
 }
@@ -32,7 +30,7 @@
 
 .sidebar-logo h2 {
   margin: 0;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: #0f172a;
 }
@@ -40,19 +38,18 @@
 .sidebar-menu {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
 }
 
 .sidebar-option {
   display: flex;
   align-items: center;
-  gap: 14px;
-
-  padding: 16px 18px;
-  border-radius: 16px;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
   cursor: pointer;
-
-  transition: background-color 0.2s ease, color 0.2s ease;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
 }
 
 .sidebar-option:hover {
@@ -60,14 +57,14 @@
 }
 
 .sidebar-option-icon {
-  font-size: 24px;
+  font-size: 18px;
   line-height: 1;
 }
 
 .sidebar-option p {
   margin: 0;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 0.93rem;
+  font-weight: 500;
   color: #475569;
 }
 
@@ -75,7 +72,176 @@
   background-color: #e8eef9;
 }
 
-.sidebar-option.active p,
-.sidebar-option.active .sidebar-option-icon {
+.sidebar-option.active p {
   color: #2563eb;
+  font-weight: 600;
+}
+
+.sidebar-bottom {
+  position: relative;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.sino-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.sino-btn:hover {
+  background: #eef2ff;
+}
+
+.sino-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.sino-label {
+  flex: 1;
+  text-align: left;
+  font-size: 0.93rem;
+  font-weight: 500;
+  color: #475569;
+}
+
+.sino-badge {
+  background: #A32D2D;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 999px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.notif-popover {
+  position: absolute;
+  bottom: 56px;
+  left: 0;
+  width: 300px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+  z-index: 999;
+}
+
+.notif-popover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.notif-popover-header strong {
+  font-size: 0.9rem;
+  color: #0f172a;
+}
+
+.marcar-todas {
+  background: none;
+  border: none;
+  font-size: 0.75rem;
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.marcar-todas:hover {
+  color: #2563eb;
+}
+
+.notif-secao {
+  padding: 6px 0;
+}
+
+.notif-secao-titulo {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #9ca3af;
+  padding: 6px 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.notif-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  transition: background 0.1s;
+}
+
+.notif-item:hover {
+  background: #f9fafb;
+}
+
+.notif-vencido {
+  border-left: 3px solid #A32D2D;
+}
+
+.notif-vencendo {
+  border-left: 3px solid #854F0B;
+}
+
+.notif-lida {
+  border-left: 3px solid #e5e7eb;
+  opacity: 0.55;
+}
+
+.notif-texto {
+  flex: 1;
+}
+
+.notif-texto strong {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.notif-texto p {
+  font-size: 0.77rem;
+  color: #6b7280;
+}
+
+.notif-marcar {
+  background: none;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.notif-marcar:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.notif-vazia {
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 0.83rem;
+  color: #9ca3af;
 }

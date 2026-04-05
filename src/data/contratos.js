@@ -47,5 +47,12 @@ export const contratos = [
       equipamento: "Teste",
       dataVenc: "2026-03-24",
       comercial: "Beatriz",
+    },
+    {
+      numero: "2026/8",
+      nome: "VS Data",
+      equipamento: "Switch",
+      dataVenc: "2026-06-05",
+      comercial: "Luiza",
     }
   ]

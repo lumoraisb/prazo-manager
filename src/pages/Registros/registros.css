@@ -188,3 +188,17 @@ tbody tr:last-child td {
 .exibe-quantidade-registros {
     color: #6b7280;;
 }
+
+.notif-clicavel {
+  cursor: pointer;
+}
+
+@keyframes destacar {
+  0%   { background-color: #fef9c3; }
+  70%  { background-color: #fef9c3; }
+  100% { background-color: transparent; }
+}
+
+.linha-destacada {
+  animation: destacar 3s ease forwards;
+}

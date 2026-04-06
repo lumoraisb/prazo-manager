@@ -3,10 +3,10 @@ import { useState, useRef, useEffect } from 'react'
 import "./sidebar.css"
 import icon from "../../assets/calendar.svg"
 import dashboard from "../../assets/dashboard.svg"
-import clients from "../../assets/clientes.svg"
-import reports from "../../assets/relatorios.svg"
-import settings from "../../assets/config.png"
-import registros from '../../pages/Registros/registros'
+import clientes from "../../assets/clientes.svg"
+import relatorios from "../../assets/relatorio.svg"
+import config from "../../assets/config.svg"
+import registros from '../../assets/registros.svg'
 
 function Sidebar({ notificacoes = [], marcarLida, marcarTodasLidas }) {
   const [aberto, setAberto] = useState(false)
@@ -37,7 +37,7 @@ function Sidebar({ notificacoes = [], marcarLida, marcarTodasLidas }) {
       <div className="sidebar-top">
         <div className="sidebar-logo">
           <span className="sidebar-logo-icon">
-            <img src={icon} alt="Icon" />
+            <img src={icon} alt="Icon" className="sidebar-icon-img" />
           </span>
           <h2>Prazo Manager</h2>
         </div>
@@ -45,31 +45,31 @@ function Sidebar({ notificacoes = [], marcarLida, marcarTodasLidas }) {
         <nav className="sidebar-menu">
           <NavLink to="/" className="sidebar-option">
             <span className="sidebar-option-icon">
-              <img src={dashboard} alt="Dashboard" />
+              <img src={dashboard} alt="Dashboard" className="sidebar-icon-img" />
             </span>
             <p>Dashboard</p>
           </NavLink>
           <NavLink to="/registros" className="sidebar-option">
             <span className="sidebar-option-icon">
-              <img src={registros} alt="Registros" />
+              <img src={registros} alt="Registros" className="sidebar-icon-img" />
             </span>
             <p>Registros</p>
           </NavLink>
           <NavLink to="/clientes" className="sidebar-option">
             <span className="sidebar-option-icon">
-              <img src={clients} alt="Clientes" />
+              <img src={clientes} alt="Clientes" className="sidebar-icon-img" />
             </span>
             <p>Clientes</p>
           </NavLink>
           <NavLink to="/relatorios" className="sidebar-option">
             <span className="sidebar-option-icon">
-              <img src={reports} alt="Relatórios" />
+              <img src={relatorios} alt="Relatórios" className="sidebar-icon-img" />
             </span>
             <p>Relatórios</p>
           </NavLink>
           <NavLink to="/configuracoes" className="sidebar-option">
             <span className="sidebar-option-icon">
-              <img src={settings} alt="Configurações" />
+              <img src={config} alt="Configurações" className="sidebar-icon-img" />
             </span>
             <p>Configurações</p>
           </NavLink>

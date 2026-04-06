@@ -17,27 +17,29 @@ export function useNotificacoes(contratos, config) {
   const [notificacoes, setNotificacoes] = useState([])
 
   function removerToast(id) {
-    setToasts(prev => prev.filter(t => t.id !== id))
+    setToasts((prev) => prev.filter((t) => t.id !== id))
   }
 
   function marcarLida(id) {
-    setNotificacoes(prev => {
-      const atualizado = prev.map(n => n.id === id ? { ...n, lida: true } : n)
+    setNotificacoes((prev) => {
+      const atualizado = prev.map((n) =>
+        n.id === id ? { ...n, lida: true } : n
+      )
       salvarLidas(atualizado)
       return atualizado
     })
   }
 
   function marcarTodasLidas() {
-    setNotificacoes(prev => {
-      const atualizado = prev.map(n => ({ ...n, lida: true }))
+    setNotificacoes((prev) => {
+      const atualizado = prev.map((n) => ({ ...n, lida: true }))
       salvarLidas(atualizado)
       return atualizado
     })
   }
 
   function salvarLidas(lista) {
-    const lidas = lista.filter(n => n.lida).map(n => n.id)
+    const lidas = lista.filter((n) => n.lida).map((n) => n.id)
     localStorage.setItem("notificacoes_lidas", JSON.stringify(lidas))
   }
 
@@ -49,11 +51,23 @@ export function useNotificacoes(contratos, config) {
     }
   }
 
+  function getToastsMostrados() {
+    try {
+      return JSON.parse(localStorage.getItem("toasts_mostrados")) || []
+    } catch {
+      return []
+    }
+  }
+
+  function salvarToastsMostrados(ids) {
+    localStorage.setItem("toasts_mostrados", JSON.stringify(ids))
+  }
+
   function gerarLista(lista) {
     const lidas = getLidas()
     const novas = []
 
-    lista.forEach(contrato => {
+    lista.forEach((contrato) => {
       const dias = calcularDias(contrato.dataVenc)
       const status = verificarStatus(dias, config.diasAlerta ?? 30)
 
@@ -86,12 +100,29 @@ export function useNotificacoes(contratos, config) {
   }
 
   useEffect(() => {
-    if (contratos.length === 0) return
+    if (contratos.length === 0) {
+      setNotificacoes([])
+      setToasts([])
+      return
+    }
+
     const geradas = gerarLista(contratos)
     setNotificacoes(geradas)
-    const naoLidas = geradas.filter(n => !n.lida)
-    setToasts(naoLidas)
-  }, [contratos])
+
+    const mostrados = getToastsMostrados()
+
+    const novosToasts = geradas.filter(
+      (n) => !n.lida && !mostrados.includes(n.id)
+    )
+
+    setToasts(novosToasts)
+
+    if (novosToasts.length > 0) {
+      salvarToastsMostrados([
+        ...new Set([...mostrados, ...novosToasts.map((n) => n.id)]),
+      ])
+    }
+  }, [contratos, config])
 
   return { toasts, removerToast, notificacoes, marcarLida, marcarTodasLidas }
 }

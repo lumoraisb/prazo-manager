@@ -1,30 +1,37 @@
 import "./config.css"
 
 function Configuracoes({ config, setConfig, contratos }) {
-
   function toggleConfig(chave) {
-    setConfig(prev => ({ ...prev, [chave]: !prev[chave] }))
+    setConfig((prev) => ({ ...prev, [chave]: !prev[chave] }))
   }
 
   function handleSistema(chave, valor) {
-    setConfig(prev => ({ ...prev, [chave]: valor }))
+    setConfig((prev) => ({ ...prev, [chave]: valor }))
   }
 
   function exportarCSV() {
-    const cabecalho = ["Número", "Cliente", "Equipamento", "Data Abertura", "Data Vencimento", "Comercial", "Revalidação"]
+    const cabecalho = [
+      "Número",
+      "Cliente",
+      "Equipamento",
+      "Data Abertura",
+      "Data Vencimento",
+      "Comercial",
+      "Revalidação",
+    ]
 
-    const linhas = contratos.map(c => [
+    const linhas = contratos.map((c) => [
       c.numero,
       c.nome,
       c.equipamento,
       c.dataAbertura || "",
-      c.dataVenc,
-      c.comercial,
-      c.revalidacao || ""
+      c.dataVenc || "",
+      c.comercial || "",
+      c.revalidacao || "",
     ])
 
     const conteudo = [cabecalho, ...linhas]
-      .map(linha => linha.map(campo => `"${campo}"`).join(","))
+      .map((linha) => linha.map((campo) => `"${campo}"`).join(","))
       .join("\n")
 
     baixarArquivo(conteudo, "contratos.csv", "text/csv")
@@ -36,12 +43,16 @@ function Configuracoes({ config, setConfig, contratos }) {
       versao: "1.0",
       dados: {
         contratos,
-        configuracoes: config
-      }
+        configuracoes: config,
+      },
     }
 
     const conteudo = JSON.stringify(backup, null, 2)
-    baixarArquivo(conteudo, `backup_${new Date().toISOString().slice(0, 10)}.json`, "application/json")
+    baixarArquivo(
+      conteudo,
+      `backup_${new Date().toISOString().slice(0, 10)}.json`,
+      "application/json"
+    )
   }
 
   function baixarArquivo(conteudo, nomeArquivo, tipo) {
@@ -71,10 +82,17 @@ function Configuracoes({ config, setConfig, contratos }) {
         <div className="toggle-row">
           <div className="toggle-info">
             <strong>Contratos vencendo</strong>
-            <span>Receber alertas quando contratos estão próximos do vencimento</span>
+            <span>
+              Receber alertas quando contratos estão próximos do vencimento
+            </span>
           </div>
+
           <label className="toggle">
-            <input type="checkbox" checked={config.vencendo} onChange={() => toggleConfig("vencendo")} />
+            <input
+              type="checkbox"
+              checked={config.vencendo}
+              onChange={() => toggleConfig("vencendo")}
+            />
             <span className="slider"></span>
           </label>
         </div>
@@ -84,8 +102,13 @@ function Configuracoes({ config, setConfig, contratos }) {
             <strong>Contratos vencidos</strong>
             <span>Receber alertas diários de contratos vencidos</span>
           </div>
+
           <label className="toggle">
-            <input type="checkbox" checked={config.vencidos} onChange={() => toggleConfig("vencidos")} />
+            <input
+              type="checkbox"
+              checked={config.vencidos}
+              onChange={() => toggleConfig("vencidos")}
+            />
             <span className="slider"></span>
           </label>
         </div>
@@ -95,8 +118,13 @@ function Configuracoes({ config, setConfig, contratos }) {
             <strong>Notificações por e-mail</strong>
             <span>Receber resumos semanais por e-mail</span>
           </div>
+
           <label className="toggle">
-            <input type="checkbox" checked={config.email} onChange={() => toggleConfig("email")} />
+            <input
+              type="checkbox"
+              checked={config.email}
+              onChange={() => toggleConfig("email")}
+            />
             <span className="slider"></span>
           </label>
         </div>
@@ -110,22 +138,35 @@ function Configuracoes({ config, setConfig, contratos }) {
         <p className="card-subtitle">Configurações gerais do sistema</p>
 
         <div className="field-group">
-          <label>Limite de dias para alerta de vencimento</label>
+          <label htmlFor="dias-alerta">
+            Limite de dias para alerta de vencimento
+          </label>
           <input
+            id="dias-alerta"
             type="number"
+            min="1"
+            max="365"
             value={config.diasAlerta ?? 30}
-            onChange={e => handleSistema("diasAlerta", Number(e.target.value))}
+            onChange={(e) =>
+              handleSistema("diasAlerta", Number(e.target.value) || 1)
+            }
           />
-          <p className="field-hint">Contratos serão marcados como "Vencendo" quando estiverem dentro deste período</p>
+          <p className="field-hint">
+            Contratos serão marcados como "Vencendo" quando estiverem dentro
+            deste período
+          </p>
         </div>
 
         <div className="field-group">
-          <label>Prefixo de numeração de contratos</label>
+          <label htmlFor="prefixo-contrato">
+            Prefixo de numeração de contratos
+          </label>
           <input
+            id="prefixo-contrato"
             type="text"
             placeholder="AAAA/####"
             value={config.prefixo ?? ""}
-            onChange={e => handleSistema("prefixo", e.target.value)}
+            onChange={(e) => handleSistema("prefixo", e.target.value)}
           />
           <p className="field-hint">Formato atual: Ano/Número sequencial</p>
         </div>
@@ -143,7 +184,9 @@ function Configuracoes({ config, setConfig, contratos }) {
             <strong>Exportar todos os contratos</strong>
             <span>Baixar todos os dados em formato CSV</span>
           </div>
-          <button className="btn-outline" onClick={exportarCSV}>Exportar CSV</button>
+          <button className="btn-outline" type="button" onClick={exportarCSV}>
+            Exportar CSV
+          </button>
         </div>
 
         <div className="data-row">
@@ -151,7 +194,9 @@ function Configuracoes({ config, setConfig, contratos }) {
             <strong>Backup do sistema</strong>
             <span>Criar backup completo dos dados</span>
           </div>
-          <button className="btn-outline" onClick={criarBackup}>Criar Backup</button>
+          <button className="btn-outline" type="button" onClick={criarBackup}>
+            Criar Backup
+          </button>
         </div>
       </div>
     </>

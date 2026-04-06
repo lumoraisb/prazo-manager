@@ -5,7 +5,7 @@ function Toast({ toast, onRemover }) {
   useEffect(() => {
     const timer = setTimeout(() => onRemover(toast.id), 5000)
     return () => clearTimeout(timer)
-  }, [])
+  }, [toast.id, onRemover])
 
   return (
     <div className={`toast toast-${toast.tipo}`}>
@@ -14,11 +14,15 @@ function Toast({ toast, onRemover }) {
           {toast.tipo === "vencido" ? "🔴" : "🟡"}
         </span>
       </div>
+
       <div className="toast-body">
         <strong>{toast.titulo}</strong>
         <p>{toast.mensagem}</p>
       </div>
-      <button className="toast-fechar" onClick={() => onRemover(toast.id)}>✕</button>
+
+      <button className="toast-fechar" onClick={() => onRemover(toast.id)}>
+        ✕
+      </button>
     </div>
   )
 }
@@ -26,7 +30,7 @@ function Toast({ toast, onRemover }) {
 function ToastContainer({ toasts, onRemover }) {
   return (
     <div className="toast-container">
-      {toasts.map(toast => (
+      {toasts.map((toast) => (
         <Toast key={toast.id} toast={toast} onRemover={onRemover} />
       ))}
     </div>

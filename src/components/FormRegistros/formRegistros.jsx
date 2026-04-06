@@ -1,7 +1,8 @@
 import "./formRegistros.css"
 import { useState } from "react"
+import { supabase } from "../../lib/supabase"
 
-function FormRegistro({ fechar, adicionarContrato, editarContrato, contratoEditando, config }) {
+function FormRegistro({ fechar, contratoEditando, config }) {
   const [numero, setNumero] = useState(contratoEditando?.numero || "")
   const [cliente, setCliente] = useState(contratoEditando?.nome || "")
   const [dataAbertura, setDataAbertura] = useState(contratoEditando?.dataAbertura || "")
@@ -10,6 +11,50 @@ function FormRegistro({ fechar, adicionarContrato, editarContrato, contratoEdita
   const [comercial, setComercial] = useState(contratoEditando?.comercial || "")
   const [revalidacao, setRevalidacao] = useState(contratoEditando?.revalidacao || "")
 
+  async function salvarContrato(novoContrato) {
+    const { error } = await supabase.from("contratos").insert([
+      {
+        numero: novoContrato.numero,
+        nome: novoContrato.nome,
+        equipamento: novoContrato.equipamento,
+        data_venc: novoContrato.dataVenc,
+        data_abertura: novoContrato.dataAbertura,
+        comercial: novoContrato.comercial,
+        revalidacao: novoContrato.revalidacao,
+      }
+    ])
+
+    if (error) {
+      console.error("Erro ao editar:", error.message, error.details, error.hint)
+      console.log("Contrato enviado para editar:", contrato)
+    } else {
+      fechar()
+      window.location.reload()
+    }
+  }
+
+  async function editarContratoSupabase(contrato) {
+    const { error } = await supabase
+      .from("contratos")
+      .update({
+        nome: contrato.nome,
+        equipamento: contrato.equipamento,
+        data_venc: contrato.dataVenc || null,
+        data_abertura: contrato.dataAbertura || null,
+        comercial: contrato.comercial,
+        revalidacao: contrato.revalidacao || null,
+      })
+      .eq("id", contrato.id)
+
+    if (error) {
+      console.error("Erro ao editar:", error.message, error.details, error.hint)
+      console.log("Contrato enviado para editar:", contrato)
+    } else {
+      fechar()
+      window.location.reload()
+    }
+  }
+
   function gerarNumero() {
     const ano = new Date().getFullYear()
     const prefixo = config?.prefixo || `${ano}`
@@ -17,26 +62,28 @@ function FormRegistro({ fechar, adicionarContrato, editarContrato, contratoEdita
     return `${prefixo}/${sequencial}`
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
 
     const novoContrato = {
+      id: contratoEditando?.id,
       numero: numero || gerarNumero(),
       nome: cliente,
-      dataAbertura,
-      dataVenc: dataVencimento,
+      dataAbertura: dataAbertura || null,
+      dataVenc: dataVencimento || null,
       equipamento,
       comercial,
-      revalidacao
+      revalidacao: revalidacao || null
     }
+
+    console.log("contratoEditando:", contratoEditando)
+    console.log("novoContrato:", novoContrato)
 
     if (contratoEditando) {
-      editarContrato(novoContrato)
+      await editarContratoSupabase(novoContrato)
     } else {
-      adicionarContrato(novoContrato)
+      await salvarContrato(novoContrato)
     }
-
-    fechar()
   }
 
   return (

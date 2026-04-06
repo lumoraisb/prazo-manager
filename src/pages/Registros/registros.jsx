@@ -2,6 +2,7 @@ import FormRegistro from "../../components/FormRegistros/formRegistros"
 import "./registros.css"
 import { useState, useEffect, useRef } from "react"
 import { useLocation } from "react-router-dom"
+import { supabase } from "../../lib/supabase"
 
 function Registros({ contratos, setContratos, config }) {
   const [contratoEditando, setContratoEditando] = useState(null)
@@ -40,9 +41,18 @@ function Registros({ contratos, setContratos, config }) {
     return "ativo"
   }
 
-  function excluirContrato(numero) {
-    setContratos(listaAtual => listaAtual.filter(c => c.numero !== numero))
+  async function excluirContrato(id) {
+  const { error } = await supabase
+    .from("contratos")
+    .delete()
+    .eq("id", id)
+
+  if (error) {
+    console.error("Erro ao deletar:", error)
+  } else {
+    window.location.reload()
   }
+}
 
   const contratosComStatus = contratos.map((item) => {
     const diasVenc = calcularDias(item.dataVenc)
@@ -143,7 +153,7 @@ function Registros({ contratos, setContratos, config }) {
               </td>
               <td className="acoes">
                 <button onClick={() => { setContratoEditando(item); setMostrarModal(true) }}>✏️</button>
-                <button onClick={() => excluirContrato(item.numero)}>🗑️</button>
+                <button onClick={() => excluirContrato(item.id)}>🗑️</button>
               </td>
             </tr>
           ))}

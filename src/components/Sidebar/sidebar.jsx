@@ -1,6 +1,12 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useState, useRef, useEffect } from 'react'
 import "./sidebar.css"
+import icon from "../../assets/calendar.svg"
+import dashboard from "../../assets/dashboard.svg"
+import clients from "../../assets/clientes.svg"
+import reports from "../../assets/relatorios.svg"
+import settings from "../../assets/config.png"
+import registros from '../../pages/Registros/registros'
 
 function Sidebar({ notificacoes = [], marcarLida, marcarTodasLidas }) {
   const [aberto, setAberto] = useState(false)
@@ -30,29 +36,41 @@ function Sidebar({ notificacoes = [], marcarLida, marcarTodasLidas }) {
     <aside className="sidebar">
       <div className="sidebar-top">
         <div className="sidebar-logo">
-          <span className="sidebar-logo-icon">📋</span>
+          <span className="sidebar-logo-icon">
+            <img src={icon} alt="Icon" />
+          </span>
           <h2>Prazo Manager</h2>
         </div>
 
         <nav className="sidebar-menu">
           <NavLink to="/" className="sidebar-option">
-            <span className="sidebar-option-icon">📊</span>
+            <span className="sidebar-option-icon">
+              <img src={dashboard} alt="Dashboard" />
+            </span>
             <p>Dashboard</p>
           </NavLink>
           <NavLink to="/registros" className="sidebar-option">
-            <span className="sidebar-option-icon">📁</span>
+            <span className="sidebar-option-icon">
+              <img src={registros} alt="Registros" />
+            </span>
             <p>Registros</p>
           </NavLink>
           <NavLink to="/clientes" className="sidebar-option">
-            <span className="sidebar-option-icon">👥</span>
+            <span className="sidebar-option-icon">
+              <img src={clients} alt="Clientes" />
+            </span>
             <p>Clientes</p>
           </NavLink>
           <NavLink to="/relatorios" className="sidebar-option">
-            <span className="sidebar-option-icon">📈</span>
+            <span className="sidebar-option-icon">
+              <img src={reports} alt="Relatórios" />
+            </span>
             <p>Relatórios</p>
           </NavLink>
           <NavLink to="/configuracoes" className="sidebar-option">
-            <span className="sidebar-option-icon">⚙️</span>
+            <span className="sidebar-option-icon">
+              <img src={settings} alt="Configurações" />
+            </span>
             <p>Configurações</p>
           </NavLink>
         </nav>

@@ -1,4 +1,4 @@
-import ClienteCard from "../../components/ClienteCard/clientecard"
+import ClienteCard from "../../components/ClienteCard/clienteCard"
 import SummaryCard from "../../components/SummaryCard/summarycard"
 import { useState } from "react"
 import "./clientes.css"

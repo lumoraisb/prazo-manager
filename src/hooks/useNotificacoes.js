@@ -13,12 +13,7 @@ function verificarStatus(diasVenc, limite) {
 }
 
 export function useNotificacoes(contratos, config) {
-  const [toasts, setToasts] = useState([])
   const [notificacoes, setNotificacoes] = useState([])
-
-  function removerToast(id) {
-    setToasts((prev) => prev.filter((t) => t.id !== id))
-  }
 
   function marcarLida(id) {
     setNotificacoes((prev) => {
@@ -49,18 +44,6 @@ export function useNotificacoes(contratos, config) {
     } catch {
       return []
     }
-  }
-
-  function getToastsMostrados() {
-    try {
-      return JSON.parse(localStorage.getItem("toasts_mostrados")) || []
-    } catch {
-      return []
-    }
-  }
-
-  function salvarToastsMostrados(ids) {
-    localStorage.setItem("toasts_mostrados", JSON.stringify(ids))
   }
 
   function gerarLista(lista) {
@@ -102,27 +85,12 @@ export function useNotificacoes(contratos, config) {
   useEffect(() => {
     if (contratos.length === 0) {
       setNotificacoes([])
-      setToasts([])
       return
     }
 
     const geradas = gerarLista(contratos)
     setNotificacoes(geradas)
-
-    const mostrados = getToastsMostrados()
-
-    const novosToasts = geradas.filter(
-      (n) => !n.lida && !mostrados.includes(n.id)
-    )
-
-    setToasts(novosToasts)
-
-    if (novosToasts.length > 0) {
-      salvarToastsMostrados([
-        ...new Set([...mostrados, ...novosToasts.map((n) => n.id)]),
-      ])
-    }
   }, [contratos, config])
 
-  return { toasts, removerToast, notificacoes, marcarLida, marcarTodasLidas }
+  return { notificacoes, marcarLida, marcarTodasLidas }
 }

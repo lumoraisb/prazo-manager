@@ -7,7 +7,6 @@ import "./App.css"
 import Clientes from "./pages/Clientes/clientes"
 import Relatorios from "./pages/Relatorio/relatorios"
 import Configuracoes from "./pages/Configuracoes/config"
-import ToastContainer from "./components/ToastContainer/toastContainer.jsx"
 import { useNotificacoes } from "./hooks/useNotificacoes"
 import { supabase } from "./lib/supabase"
 
@@ -38,7 +37,8 @@ function App() {
     }
   })
 
-  const { toasts, removerToast, notificacoes, marcarLida, marcarTodasLidas } =
+  // 👇 SEM TOAST
+  const { notificacoes, marcarLida, marcarTodasLidas } =
     useNotificacoes(listaContratos, configNotificacoes)
 
   useEffect(() => {
@@ -146,8 +146,6 @@ function App() {
             />
           </Routes>
         </main>
-
-        <ToastContainer toasts={toasts} onRemover={removerToast} />
       </div>
     </BrowserRouter>
   )
